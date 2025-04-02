@@ -91,3 +91,12 @@
                   }
             </code></pre>
       </ul>
+
+<h2>Estrutura do Projeto</h2>
+    <ul>
+      <li><strong>Controllers: </strong>Contém os controladores da API.</li>
+      <li><strong>Data: </strong>Contém o contexto do banco de dados.</li>
+      <li><strong>DTOs: </strong>Contém os objetos de transferência de dados.</li>
+      <li><strong>Middleware: </strong>Contém o middleware de autenticação.</li>
+      <li><strong>Models: </strong>Contém as classes de modelo (Account, Transaction).</strong>Contém os controladores da API.</li>
+    </ul>
