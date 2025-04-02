@@ -67,4 +67,27 @@
         <li>Parâmetros de Consulta:</strong>
           <ul><li>accountNumber: Número da conta</li></ul>
         </li>
-      </ul>     
+      </ul>
+
+<h3>Consultar extrato</h3>
+      <ul>
+        <strong><li>URL: /api/accounts/statement</li>
+        <li>Método: GET</li>
+        <li>Parâmetros de Consulta:</strong>
+          <ul><li>accountNumber: Número da conta</li></ul>
+        </li>
+      </ul>   
+
+<h3>Transferir entre contas</h3>
+      <ul><strong>
+        <li>URL: /api/accounts/transfer</li>
+        <li>Método: POST</li>
+        <li>Corpo da Requisição:</li></strong>
+            <pre><code>
+                  {
+                    "sourceAccount": "string",
+                    "destinationAccount": "string",
+                    "amount": decimal
+                  }
+            </code></pre>
+      </ul>
