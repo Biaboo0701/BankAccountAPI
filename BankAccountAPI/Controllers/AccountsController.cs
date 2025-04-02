@@ -52,13 +52,19 @@ namespace BankAccountAPI.Controllers
             var account = await _context.Accounts.FirstOrDefaultAsync(a => a.AccountNumber == accountNumber);
             if (account == null) return NotFound("Conta não encontrada");
 
-            var transactions = new List<object>
-    {
-        new { Date = DateTime.Now, Amount = -50.00, Type = "Transfer" },
-        new { Date = DateTime.Now.AddDays(-1), Amount = 200.00, Type = "Deposit" }
-    };
+            var transactions = await _context.Transactions
+                .Where(t => t.AccountNumber == accountNumber)
+                .OrderByDescending(t => t.Date)
+                .ToListAsync();
 
-            return Ok(transactions);
+            var accountStatus = new
+            {
+                AccountNumber = account.AccountNumber,
+                Balance = account.Balance,
+                Transactions = transactions
+            };
+
+            return Ok(accountStatus);
         }
 
         [HttpPost("transfer")]
@@ -79,12 +85,31 @@ namespace BankAccountAPI.Controllers
             sender.Balance -= request.Amount;
             recipient.Balance += request.Amount;
 
+            // Criar transações para o remetente e o destinatário
+            var senderTransaction = new Transaction
+            {
+                AccountNumber = sender.AccountNumber,
+                Date = DateTime.Now,
+                Amount = -request.Amount,
+                Type = "Transfer"
+            };
+            var recipientTransaction = new Transaction
+            {
+                AccountNumber = recipient.AccountNumber,
+                Date = DateTime.Now,
+                Amount = request.Amount,
+                Type = "Transfer"
+            };
+
+            // Adicionar transações ao contexto
+            _context.Transactions.Add(senderTransaction);
+            _context.Transactions.Add(recipientTransaction);
+
             // Salvar as alterações no banco de dados
             await _context.SaveChangesAsync();
 
             return Ok("Transferência realizada com sucesso");
         }
-
 
 
         private async Task<Account> Authenticate(string authorizationHeader)

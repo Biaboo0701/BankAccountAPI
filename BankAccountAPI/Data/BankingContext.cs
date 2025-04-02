@@ -7,5 +7,6 @@ namespace BankAccountAPI.Data
     {
         public BankingContext(DbContextOptions<BankingContext> options) : base(options) { }
         public DbSet<Account> Accounts { get; set; }
+        public DbSet<Transaction> Transactions { get; set; }
     }
 }
