@@ -37,11 +37,34 @@
              dotnet restore
         </code></pre>
     </li>
-    <li><strong>Adicionar e aplicar migrações:</strong> No Console do Gerenciador de Pacotes NuGet, execute os seguintes comandos para adicionar e aplicar migrações ao banco de dados:
+    <li>
+      <strong>Adicionar e aplicar migrações:</strong> No Console do Gerenciador de Pacotes NuGet, execute os seguintes comandos para adicionar e aplicar migrações ao banco de dados:
             <ul>    
                 <li>Add-Migration InitialCreate</li>
                  <li>Update-Database</li>
             </ul>
     </li>
     
- 
+  <h2>Endpoints da API</h2>
+  <h3>Registrar uma nova conta</h3>
+      <ul><strong>
+        <li>URL: /api/accounts/register</li>
+        <li>Método: POST</li>
+        <li>Corpo da Requisição:</li></strong>
+            <pre><code>
+                {
+                  "name": "string",
+                  "email": "string",
+                  "password": "string"
+                }
+            </code></pre>
+      </ul>
+
+  <h3>Consultar saldo</h3>
+      <ul>
+        <strong><li>URL: /api/accounts/balance</li>
+        <li>Método: GET</li>
+        <li>Parâmetros de Consulta:</strong>
+          <ul><li>accountNumber: Número da conta</li></ul>
+        </li>
+      </ul>     
