@@ -100,3 +100,6 @@
       <li><strong>Middleware: </strong>Contém o middleware de autenticação.</li>
       <li><strong>Models: </strong>Contém as classes de modelo (Account, Transaction).</strong>Contém os controladores da API.</li>
     </ul>
+
+<h2>Contribuição</h2>
+<p>Contribuições são bem-vindas! Sinta-se à vontade para abrir issues e pull requests.</p>
